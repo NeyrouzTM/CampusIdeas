@@ -1,0 +1,74 @@
+<div class="suggestions-container">
+  <div class="header-section">
+    <h1>Campus Ideas</h1>
+    <h2>Liste des suggestions</h2>
+  </div>
+
+  <div class="search-section">
+    <input 
+      type="text" 
+      class="search-input" 
+      placeholder="Rechercher une suggestion..."
+      [(ngModel)]="searchText">
+    
+    <select 
+      class="category-filter" 
+      [(ngModel)]="selectedCategory">
+      <option value="">Toutes les catégories</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{category}}
+      </option>
+    </select>
+  </div>
+
+  <div class="suggestions-list">
+    <div *ngFor="let suggestion of filteredSuggestions" class="suggestion-card">
+      
+      <div class="suggestion-header">
+        <h3 class="suggestion-title">{{suggestion.title}}</h3>
+        <div class="suggestion-meta">
+          <span class="category">{{suggestion.category}}</span>
+          <span class="date">{{formatDate(suggestion.date)}}</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p class="suggestion-description">{{suggestion.description}}</p>
+
+      <!-- Statut -->
+      <div class="suggestion-status">
+        <span [ngClass]="getStatusClass(suggestion.status)">
+          {{getStatusText(suggestion.status)}}
+        </span>
+      </div>
+
+      <div *ngIf="showButtons(suggestion)" class="suggestion-actions">
+        <button 
+          class="btn-like" 
+          (click)="incrementLikes(suggestion)">
+          <i class="fas fa-thumbs-up"></i> Like ({{suggestion.likes || 0}})
+        </button>
+        
+        <button 
+          class="btn-favorite" 
+          (click)="addToFavorites(suggestion)">
+          <i class="fas fa-heart"></i> Ajouter aux favoris
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="filteredSuggestions.length === 0" class="no-results">
+    <p>Aucune suggestion trouvée</p>
+  </div>
+
+  <div *ngIf="favoriteSuggestions.length > 0" class="favorites-section">
+    <h3>Mes suggestions favorites</h3>
+    <div class="favorites-list">
+      <div *ngFor="let favorite of favoriteSuggestions" class="favorite-item">
+        <span class="favorite-title">{{favorite.title}}</span>
+        <span class="favorite-category">{{favorite.category}}</span>
+      </div>
+    </div>
+  </div>
+</div>

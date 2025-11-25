@@ -1,0 +1,22 @@
+
+ <h1>Liste de Produits</h1>
+ <input id="search" type="text" placeholder="Rechercher..." class="form-control" [(ngModel)]="nameFilter">
+
+<table  class="table table-bordered">
+  <tr >
+    <th>Product Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Like</th>
+  </tr>
+  <tr *ngFor="let p of product ,let i = index">
+    <td>{{p.name}}</td>
+    <td>{{p.price}}</td>
+    <td>{{p.quantity}}</td>
+    <td>{{p.like}}</td>
+    <td><button (click)="nbrLikes(p)" class="btn btn-info">LIKE</button></td>
+
+  </tr>
+
+
+  <button (click)="save()">save</button>
