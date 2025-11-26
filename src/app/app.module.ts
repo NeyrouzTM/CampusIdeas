@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './core/header/header.component';
 import { ListSuggestionComponent } from './core/list-suggestion/list-suggestion.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NavbarComponent } from './core/navbar/navbar.component';
     FooterComponent,
     HeaderComponent,
     ListSuggestionComponent,
-    NavbarComponent
+    NavbarComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
